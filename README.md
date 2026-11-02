@@ -33,6 +33,8 @@ Design, implement, and demonstrate a **finite-state-machine (FSM) controller** f
 
 **Docking note:** C1 is a virtual dock in this workcell, not a configured physical contact-docking plugin. The starter exposes Nav2 `DockRobot`/`UndockRobot` clients, but their presence does not imply that C1 is registered with a Nav2 docking server. Follow the virtual-docking criteria described in the assignment.
 
+![Complete Workflow](images/workflow.png)
+
 ## What is provided — and what you must implement
 
 | Provided in repository | Student implementation |
