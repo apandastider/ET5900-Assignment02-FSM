@@ -68,4 +68,4 @@ ros2 run tb4_fsm_assignment student_fsm --ros-args -p use_sim_time:=true
 This initial skeleton **does not autonomously execute a mission**. Implement TODOs before it can be used for grading. When editing a copied non-symlink workspace, rebuild it to install student changes.
 
 ## Known limits
-The setup was validated against the instructor's existing ROS/Gazebo dependencies. A complete new-machine install must be rehearsed before claiming students can clone and run without assistance.
+The setup was validated against the instructor's existing ROS/Gazebo dependencies with similar commands.
