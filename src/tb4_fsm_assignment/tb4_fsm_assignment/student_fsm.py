@@ -90,10 +90,44 @@ class MissionFSM(Node):
         # and checkpoint-safe transition. NEVER issue concurrent base goals.
         raise NotImplementedError('Student implements navigation action handling')
 
+    
     def perform_station_motion(self, station_key):
-        # TODO-STUDENT: independently plan and validate station-safe arm poses
-        # using MoveIt Joints tab; execute and check completion/failure.
-        raise NotImplementedError('Student implements arm action handling')
+        """
+        Execute the arm operation for a given station.
+    
+        Station keys: R1, R2, G1, G2.
+    
+        Students must implement trajectory creation,
+        asynchronous execution, and result handling.
+        """
+    
+        # Retrieve student-defined joint values from YAML.
+        joint_names = self.arm_config["arm_joints"]
+    
+        joint_targets = self.arm_config["poses"][
+            station_key
+        ]["joint_positions"]
+    
+        # Check whether five joint targets were provided.
+        if len(joint_targets) != len(joint_names):
+            self.get_logger().error(
+                f"Invalid arm pose for {station_key}. "
+                f"Expected {len(joint_names)} joint values."
+            )
+            return
+    
+        # TODO-STUDENT:
+        # 1. Verify the selected pose is safe if not safe pose is recorded previously [Optional].
+        # 2. Construct a JointTrajectory message.
+        # 3. Create a FollowJointTrajectory.Goal.
+        # 4. Send the action asynchronously.
+        # 5. Handle acceptance, execution result, and failure.
+        # 6. Update the FSM state only after success.
+    
+        raise NotImplementedError(
+            "Student implements arm action execution"
+        )
+
 
     def dock_at_c1(self):
         # TODO-STUDENT: stop at C1 staging pose, then dock.
