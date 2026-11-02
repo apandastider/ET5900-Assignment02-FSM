@@ -1,0 +1,12 @@
+diff --git a/so101_description/urdf/so101_robot.urdf.xacro b/so101_description/urdf/so101_robot.urdf.xacro
+index 62c5d14..ee3e135 100644
+--- a/so101_description/urdf/so101_robot.urdf.xacro
++++ b/so101_description/urdf/so101_robot.urdf.xacro
+@@ -394,6 +394,7 @@
+         <child link="${prefix}moving_jaw_so101_v1_link"/>
+         <axis xyz="0 0 1"/>
+         <limit effort="10" velocity="10" lower="-0.174533" upper="1.74533"/>
++        <dynamics damping="0.1" friction="0.02"/>
+       </joint>
+     
+       <transmission name="${prefix}gripper_trans">

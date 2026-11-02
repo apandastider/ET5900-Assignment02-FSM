@@ -1,0 +1,11 @@
+# CANDIDATE map-frame station poses. Verify with RViz/AMCL before student release.
+# Marker centers from SDF; yaw angles are hypotheses, not independently validated.
+# If SLAM map origin differs from Gazebo world, replace all x/y with map-frame goals.
+stations:
+  R1: {x: 1.20, y: 1.55, yaw: 0.0, verified: true}
+  R2: {x: -0.80, y: 1.55, yaw: 0.0, verified: true}
+  G1: {x: 1.20, y: -1.55, yaw: 0.0, verified: true}
+  G2: {x: -0.80, y: -1.55, yaw: 0.0, verified: true}
+  C1: {x: -2.30, y: 0.0, yaw: 3.141592653589793, verified: true}
+# Suggested starting tolerances; students design and justify verification criteria.
+recommended_dock_tolerances: {position_m: 0.12, yaw_rad: 0.2618, stopped_duration_s: 1.0}

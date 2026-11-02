@@ -1,0 +1,7 @@
+image: week9_pick_place.pgm
+mode: trinary
+resolution: 0.050
+origin: [-3.973, -3.473, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

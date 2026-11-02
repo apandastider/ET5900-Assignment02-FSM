@@ -1,0 +1,35 @@
+sssssscontroller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    gripper_controller:
+      type: forward_command_controller/ForwardCommandController
+
+arm_controller:
+  ros__parameters:
+    joints:
+      - so101_shoulder_pan
+      - so101_shoulder_lift
+      - so101_elbow_flex
+      - so101_wrist_flex
+      - so101_wrist_roll
+
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+
+gripper_controller:
+  ros__parameters:
+    joints:
+      - so101_gripper
+
+    interface_name: position

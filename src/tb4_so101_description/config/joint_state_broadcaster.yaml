@@ -1,0 +1,5 @@
+joint_state_broadcaster:
+  ros__parameters:
+    extra_joints:
+      - wheel_drop_left_joint
+      - wheel_drop_right_joint

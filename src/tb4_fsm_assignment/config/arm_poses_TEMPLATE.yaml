@@ -1,0 +1,5 @@
+# Instructor must measure/validate collision-safe arm poses at all stations.
+# Deliberately NO numeric trajectories are shipped as verified.
+# Students can use recorded trajectories or safely designed motions.
+arm_joints: [so101_shoulder_pan, so101_shoulder_lift, so101_elbow_flex, so101_wrist_flex, so101_wrist_roll]
+poses: {}

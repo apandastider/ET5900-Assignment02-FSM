@@ -1,0 +1,3 @@
+Copy your VERIFIED ~/turtlebot4_ws/maps/week9_pick_place.yaml and .pgm here.
+They are not bundled because your actual saved SLAM map was not uploaded.
+Check image: relative path inside YAML after copying. Do not replace with an invented map.

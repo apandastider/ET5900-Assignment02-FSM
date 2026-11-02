@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<robot name="turtlebot4_so101"
+       xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="gazebo" default="ignition"/>
+  <xacro:arg name="namespace" default=""/>
+
+  <!-- Original TurtleBot 4 Lite -->
+  <xacro:include filename="$(find turtlebot4_description)/urdf/lite/turtlebot4.urdf.xacro"/>
+
+  <!-- Elevated mounting plate -->
+  <link name="so101_plate_link">
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.145" length="0.010"/>
+      </geometry>
+      <material name="plate_blue">
+        <color rgba="0.12 0.28 0.75 1"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <cylinder radius="0.145" length="0.010"/>
+      </geometry>
+    </collision>
+
+    <!-- Four supporting posts -->
+    <xacro:macro name="support" params="x y">
+      <visual>
+        <origin xyz="${x} ${y} -0.0725"/>
+        <geometry>
+          <cylinder radius="0.012" length="0.165"/>
+        </geometry>
+        <material name="support_gray">
+          <color rgba="0.55 0.55 0.55 1"/>
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="${x} ${y} -0.0725"/>
+        <geometry>
+          <cylinder radius="0.012" length="0.165"/>
+        </geometry>
+      </collision>
+    </xacro:macro>
+
+    <xacro:support x="0.09" y="0.09"/>
+    <xacro:support x="0.09" y="-0.09"/>
+    <xacro:support x="-0.09" y="0.09"/>
+    <xacro:support x="-0.09" y="-0.09"/>
+
+    <inertial>
+      <origin xyz="0 0 -0.10"/>
+      <mass value="0.8"/>
+      <inertia
+        ixx="0.025" iyy="0.025" izz="0.010"
+        ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+
+  </link>
+
+  <joint name="so101_plate_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="so101_plate_link"/>
+    <origin xyz="0 0 0.325" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Original SO-ARM101 description -->
+  <xacro:include filename="$(find so101_description)/urdf/so101_robot.urdf.xacro"/>
+
+  <xacro:so101_robot
+    use_gazebo="true"
+    prefix="so101_"
+    parent="so101_plate_link"
+    xyz="-0.035 0 0.005"
+    rpy="0 0 0"/>
+
+<!-- SO-ARM101 Gazebo control hardware -->
+
+<xacro:include filename="$(find so101_description)/urdf/control/so101_ros2_control.urdf.xacro"/>
+
+<xacro:so101_ros2_control
+  prefix="so101_"
+  use_gazebo="true"
+  use_fake_hardware="false"/>
+
+<!-- Load Gazebo ros2_control plugin -->
+
+<!-- <xacro:include filename="$(find so101_description)/urdf/control/gazebo_sim_ros2_control.urdf.xacro"/>
+
+<xacro:load_gazebo_sim_ros2_control_plugin
+  robot_name="so101"
+  use_gazebo="true"
+  controllers_file="$(find tb4_so101_description)/config/so101_controllers.yaml"/> -->
+
+</robot>

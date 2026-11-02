@@ -1,0 +1,957 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.9">
+  <world name="week9_pick_place">
+    <gravity>0 0 -9.8</gravity>
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu" />
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 8 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>100</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+    <model name="ground">
+      <static>true</static>
+      <pose>0 0 -0.06 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 7 0.12</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 7 0.12</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.72 0.73 0.73 1</ambient>
+            <diffuse>0.72 0.73 0.73 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="north_wall">
+      <static>true</static>
+      <pose>0 3.5 0.7 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.12 1.4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.12 1.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.84 0.86 1</ambient>
+            <diffuse>0.82 0.84 0.86 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="south_wall">
+      <static>true</static>
+      <pose>0 -3.5 0.7 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.12 1.4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.12 1.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.84 0.86 1</ambient>
+            <diffuse>0.82 0.84 0.86 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="west_wall">
+      <static>true</static>
+      <pose>-4 0 0.7 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.12 7 1.4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.12 7 1.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.84 0.86 1</ambient>
+            <diffuse>0.82 0.84 0.86 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="east_wall">
+      <static>true</static>
+      <pose>4 0 0.7 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.12 7 1.4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.12 7 1.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.84 0.86 1</ambient>
+            <diffuse>0.82 0.84 0.86 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_pick_cabinet">
+      <static>true</static>
+      <pose>1.9 1.55 0.22 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.33 0.37 1</ambient>
+            <diffuse>0.3 0.33 0.37 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_pick_tabletop">
+      <static>true</static>
+      <pose>1.9 1.55 0.46 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.844 0.361 0.354 1</ambient>
+            <diffuse>0.844 0.361 0.354 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_pick_front_label">
+      <static>true</static>
+      <pose>1.49 1.55 0.385 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.012 0.45 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.13 0.12 1</ambient>
+            <diffuse>0.82 0.13 0.12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_pick_dock_marker">
+      <static>true</static>
+      <pose>1.20 1.55 0.006 0 0 0</pose>
+      <link name="body">
+        <visual name="noncolliding_floor_mat">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.54 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.85 0.12 0.12 1</ambient>
+            <diffuse>0.85 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_target">
+          <pose>0 0 0.005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.11</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_dot">
+          <pose>0 0 0.007 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.12 0.12 1</ambient>
+            <diffuse>0.85 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_direction_stem">
+          <pose>0.12 0 0.0065 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 0.018 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_0">
+          <pose>0.19 0.036 0.0065 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_1">
+          <pose>0.19 -0.036 0.0065 0 0 -0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_place_cabinet">
+      <static>true</static>
+      <pose>-0.1 1.55 0.22 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.33 0.37 1</ambient>
+            <diffuse>0.3 0.33 0.37 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_place_tabletop">
+      <static>true</static>
+      <pose>-0.1 1.55 0.46 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.844 0.361 0.354 1</ambient>
+            <diffuse>0.844 0.361 0.354 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_place_front_label">
+      <static>true</static>
+      <pose>-0.51 1.55 0.385 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.012 0.45 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.13 0.12 1</ambient>
+            <diffuse>0.82 0.13 0.12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_place_dock_marker">
+      <static>true</static>
+      <pose>-0.80 1.55 0.006 0 0 0</pose>
+      <link name="body">
+        <visual name="noncolliding_floor_mat">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.54 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.85 0.12 0.12 1</ambient>
+            <diffuse>0.85 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_target">
+          <pose>0 0 0.005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.11</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_dot">
+          <pose>0 0 0.007 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.85 0.12 0.12 1</ambient>
+            <diffuse>0.85 0.12 0.12 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_direction_stem">
+          <pose>0.12 0 0.0065 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 0.018 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_0">
+          <pose>0.19 0.036 0.0065 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_1">
+          <pose>0.19 -0.036 0.0065 0 0 -0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.85 0.85 1</ambient>
+            <diffuse>1 0.85 0.85 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="red_target_box">
+      <static>false</static>
+      <pose>1.58 1.55 0.50 0 0 0</pose>
+      <link name="body">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>3e-05</ixx>
+            <iyy>3e-05</iyy>
+            <izz>3e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>1.5</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.06 0.06 0.06</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 0.13 0.12 1</ambient>
+            <diffuse>0.82 0.13 0.12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_pick_cabinet">
+      <static>true</static>
+      <pose>1.9 -1.55 0.22 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.33 0.37 1</ambient>
+            <diffuse>0.3 0.33 0.37 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_pick_tabletop">
+      <static>true</static>
+      <pose>1.9 -1.55 0.46 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.354 0.676 0.445 1</ambient>
+            <diffuse>0.354 0.676 0.445 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_pick_front_label">
+      <static>true</static>
+      <pose>1.49 -1.55 0.385 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.012 0.45 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.58 0.25 1</ambient>
+            <diffuse>0.12 0.58 0.25 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_pick_dock_marker">
+      <static>true</static>
+      <pose>1.20 -1.55 0.006 0 0 0</pose>
+      <link name="body">
+        <visual name="noncolliding_floor_mat">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.54 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.62 0.26 1</ambient>
+            <diffuse>0.10 0.62 0.26 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_target">
+          <pose>0 0 0.005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.11</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_dot">
+          <pose>0 0 0.007 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.62 0.26 1</ambient>
+            <diffuse>0.10 0.62 0.26 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_direction_stem">
+          <pose>0.12 0 0.0065 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 0.018 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_0">
+          <pose>0.19 0.036 0.0065 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_1">
+          <pose>0.19 -0.036 0.0065 0 0 -0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_place_cabinet">
+      <static>true</static>
+      <pose>-0.1 -1.55 0.22 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.33 0.37 1</ambient>
+            <diffuse>0.3 0.33 0.37 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_place_tabletop">
+      <static>true</static>
+      <pose>-0.1 -1.55 0.46 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.8 0.65 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.354 0.676 0.445 1</ambient>
+            <diffuse>0.354 0.676 0.445 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_place_front_label">
+      <static>true</static>
+      <pose>-0.51 -1.55 0.385 0 0 0</pose>
+      <link name="body">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.012 0.45 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.58 0.25 1</ambient>
+            <diffuse>0.12 0.58 0.25 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_place_dock_marker">
+      <static>true</static>
+      <pose>-0.80 -1.55 0.006 0 0 0</pose>
+      <link name="body">
+        <visual name="noncolliding_floor_mat">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.54 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.62 0.26 1</ambient>
+            <diffuse>0.10 0.62 0.26 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_target">
+          <pose>0 0 0.005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.11</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_dot">
+          <pose>0 0 0.007 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.62 0.26 1</ambient>
+            <diffuse>0.10 0.62 0.26 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_direction_stem">
+          <pose>0.12 0 0.0065 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 0.018 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_0">
+          <pose>0.19 0.036 0.0065 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_1">
+          <pose>0.19 -0.036 0.0065 0 0 -0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.82 1 0.85 1</ambient>
+            <diffuse>0.82 1 0.85 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="green_target_box">
+      <static>false</static>
+      <pose>1.58 -1.55 0.51 0 0 0</pose>
+      <link name="body">
+        <inertial>
+          <mass>0.05</mass>
+          <inertia>
+            <ixx>3e-05</ixx>
+            <iyy>3e-05</iyy>
+            <izz>3e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.03 0.03 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.5</mu>
+                <mu2>1.5</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.06 0.06 0.06</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.58 0.25 1</ambient>
+            <diffuse>0.12 0.58 0.25 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="blue_charging_dock_backboard">
+      <static>true</static>
+      <pose>-2.8 0 0.14 0 0 0</pose>
+      <link name="body">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.13 0.6 0.28</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.13 0.6 0.28</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.12 0.18 0.3 1</ambient>
+            <diffuse>0.12 0.18 0.3 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="blue_charging_dock_marker">
+      <static>true</static>
+      <pose>-2.3 0 0.006 0 0 0</pose>
+      <link name="body">
+        <visual name="noncolliding_floor_mat">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.42 0.54 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.10 0.30 0.90 1</ambient>
+            <diffuse>0.10 0.30 0.90 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_target">
+          <pose>0 0 0.005 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.11</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.75 0.86 1 1</ambient>
+            <diffuse>0.75 0.86 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="dock_center_dot">
+          <pose>0 0 0.007 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.002</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.10 0.30 0.90 1</ambient>
+            <diffuse>0.10 0.30 0.90 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_direction_stem">
+          <pose>-0.12 0 0.0065 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.15 0.018 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.75 0.86 1 1</ambient>
+            <diffuse>0.75 0.86 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_0">
+          <pose>-0.19 0.036 0.0065 0 0 -0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.75 0.86 1 1</ambient>
+            <diffuse>0.75 0.86 1 1</diffuse>
+          </material>
+        </visual>
+        <visual name="approach_arrowhead_1">
+          <pose>-0.19 -0.036 0.0065 0 0 0.785398</pose>
+          <geometry>
+            <box>
+              <size>0.09 0.014 0.002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.75 0.86 1 1</ambient>
+            <diffuse>0.75 0.86 1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

@@ -1,0 +1,5 @@
+# Integration-test acceleration values, not physical battery model calibration.
+initial_percent: 16.0
+idle_drain_percent_per_min: 6.0
+moving_drain_percent_per_min: 12.0
+charge_percent_per_min: 60.0

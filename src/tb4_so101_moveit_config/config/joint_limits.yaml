@@ -1,0 +1,20 @@
+joint_limits:
+  so101_shoulder_pan:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+
+  so101_shoulder_lift:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+
+  so101_elbow_flex:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+
+  so101_wrist_flex:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
+
+  so101_wrist_roll:
+    has_acceleration_limits: true
+    max_acceleration: 1.0
