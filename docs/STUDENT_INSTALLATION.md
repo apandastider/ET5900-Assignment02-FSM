@@ -1,7 +1,7 @@
 # ET 5900 — Student setup: Ubuntu 24.04 / ROS 2 Jazzy
 
 ## Prerequisites and release boundaries
-Use Ubuntu 24.04, ROS 2 Jazzy, Gazebo Sim Harmonic (gz sim 8), TurtleBot 4 Jazzy simulator packages, MoveIt 2, Nav2, ros_gz, ros2_control, and `colcon`. Hardware acceleration is recommended. Follow your course's environment image if provided; exact apt package names and distro compatibility should be validated on one fresh student VM before the assignment is distributed.
+Use Ubuntu 24.04, ROS 2 Jazzy, Gazebo Sim Harmonic (gz sim 8), TurtleBot 4 Jazzy simulator packages, MoveIt 2, Nav2, ros_gz, ros2_control, and `colcon`. Hardware acceleration is recommended.
 
 The verified TurtleBot 4 packages are taken from the instructor's Jazzy installation; **the repository does not contain the upstream TurtleBot source**. Obtain it using the standard Jazzy apt packages or the instructor-approved pinned TurtleBot simulator commit. Do not mix Humble packages with Jazzy.
 
