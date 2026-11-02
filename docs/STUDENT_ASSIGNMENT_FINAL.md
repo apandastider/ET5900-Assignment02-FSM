@@ -56,6 +56,7 @@ The `student_fsm.py` provides Nav2, arm, optional DockRobot/UndockRobot action c
 | ≤15% interruption, checkpoint correctness, C1 verification, ≥90% charging and resume | 20 |
 | Recovery testing, logging and failure analysis | 5 |
 | Reproducibility, report, video, individual contribution and AI disclosure | 10 |
+|Bonus points for Successful Recovery Trial or Failure Show after Attempt|10|
 
 The same core outcomes apply to all; graduate-level report and recovery-depth criteria are assessed as well. An implementation that bypasses docking verification or hardcodes charging success does not satisfy the charging criterion.
 
