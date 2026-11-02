@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 730" role="img" aria-labelledby="title desc">
+<title id="title">ET5900 mission FSM with charging interruption</title><desc id="desc">Sequence R1, R2, G1, G2; at low battery checkpoint and cancel, navigate to C1, verify docking, charge to 90 percent, undock, then resume saved task. Failed operations route to recovery.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#18243b}.title{font-size:27px;font-weight:bold}.sub{font-size:15px;fill:#485b72}.head{font-size:16px;font-weight:bold}.small{font-size:13px}.node{stroke:#7294ba;stroke-width:2;fill:#eaf3ff}.charge{stroke:#b77d20;stroke-width:2;fill:#fff4d9}.good{stroke:#3a9472;stroke-width:2;fill:#e8f7ef}.bad{stroke:#ad5260;stroke-width:2;fill:#ffebee}.line{fill:none;stroke:#4b637e;stroke-width:2.5;marker-end:url(#arr)}.interrupt{stroke:#d18a19;stroke-dasharray:7 6}.label{font-size:13px;fill:#705019}</style>
+<defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8Z" fill="#4b637e"/></marker></defs>
+<rect width="1100" height="730" rx="20" fill="#ffffff"/>
+<text x="45" y="48" class="title">ET 5900 · Autonomous Mobile Manipulation FSM</text>
+<text x="45" y="74" class="sub">Conceptual architecture — students implement action callbacks, transition guards, cancellation and checkpoint logic</text>
+<rect class="node" x="54" y="108" width="160" height="66" rx="12"/><text x="134" y="135" text-anchor="middle" class="head">INITIALIZE</text><text x="134" y="154" text-anchor="middle" class="small">Check readiness</text>
+<rect class="node" x="259" y="108" width="198" height="66" rx="12"/><text x="358" y="135" text-anchor="middle" class="head">NAVIGATE</text><text x="358" y="154" text-anchor="middle" class="small">R1 → R2 → G1 → G2</text>
+<rect class="node" x="501" y="108" width="186" height="66" rx="12"/><text x="594" y="135" text-anchor="middle" class="head">ARM ACTION</text><text x="594" y="154" text-anchor="middle" class="small">Safe station motion</text>
+<rect class="node" x="731" y="108" width="174" height="66" rx="12"/><text x="818" y="135" text-anchor="middle" class="head">CHECK RESULT</text><text x="818" y="154" text-anchor="middle" class="small">Advance on success</text>
+<rect class="good" x="942" y="108" width="120" height="66" rx="12"/><text x="1002" y="136" text-anchor="middle" class="head">DONE</text><text x="1002" y="154" text-anchor="middle" class="small">All stations</text>
+<path class="line" d="M214 141 H259"/><path class="line" d="M457 141 H501"/><path class="line" d="M687 141 H731"/><path class="line" d="M905 141 H942"/>
+<path class="line" d="M818 174 V215 H358 V174"/><text x="579" y="208" text-anchor="middle" class="small">Next station if mission not complete</text>
+<text x="51" y="274" class="head">Battery interrupt path (≤15%)</text><text x="51" y="296" class="sub">Triggered during navigation or arm execution; no simultaneous conflicting motion commands</text>
+<rect class="charge" x="50" y="332" width="176" height="82" rx="12"/><text x="138" y="359" text-anchor="middle" class="head">INTERRUPT</text><text x="138" y="380" text-anchor="middle" class="small">Save exact phase</text><text x="138" y="398" text-anchor="middle" class="small">Cancel / finish safely</text>
+<rect class="charge" x="261" y="332" width="168" height="82" rx="12"/><text x="345" y="359" text-anchor="middle" class="head">GO TO C1</text><text x="345" y="380" text-anchor="middle" class="small">Navigate to staging</text><text x="345" y="398" text-anchor="middle" class="small">and dock</text>
+<rect class="charge" x="465" y="332" width="183" height="82" rx="12"/><text x="557" y="359" text-anchor="middle" class="head">VERIFY DOCK</text><text x="557" y="380" text-anchor="middle" class="small">Pose + yaw + stop</text><text x="557" y="398" text-anchor="middle" class="small">+ action outcome</text>
+<rect class="charge" x="684" y="332" width="173" height="82" rx="12"/><text x="770" y="359" text-anchor="middle" class="head">CHARGING</text><text x="770" y="380" text-anchor="middle" class="small">Publish docked = true</text><text x="770" y="398" text-anchor="middle" class="small">Wait until ≥90%</text>
+<rect class="good" x="891" y="332" width="167" height="82" rx="12"/><text x="974" y="359" text-anchor="middle" class="head">RESUME</text><text x="974" y="380" text-anchor="middle" class="small">Undock / depart</text><text x="974" y="398" text-anchor="middle" class="small">Restore checkpoint</text>
+<path class="line interrupt" d="M358 215 V260 H138 V332"/><path class="line interrupt" d="M594 174 V273 H138 V332"/>
+<path class="line" d="M226 373 H261"/><path class="line" d="M429 373 H465"/><path class="line" d="M648 373 H684"/><path class="line" d="M857 373 H891"/>
+<path class="line" d="M974 414 V449 H358 V215"/><text x="660" y="440" text-anchor="middle" class="small">Resume exactly the unfinished station/phase</text>
+<rect class="bad" x="287" y="541" width="250" height="86" rx="12"/><text x="412" y="569" text-anchor="middle" class="head">RECOVERY</text><text x="412" y="593" text-anchor="middle" class="small">Bounded retry or safe abort</text><text x="412" y="613" text-anchor="middle" class="small">No false success reported</text>
+<rect class="bad" x="582" y="541" width="208" height="86" rx="12"/><text x="686" y="571" text-anchor="middle" class="head">FAILED</text><text x="686" y="596" text-anchor="middle" class="small">Report terminal outcome</text>
+<path class="line" d="M557 414 V479 H412 V541"/><path class="line" d="M818 215 V500 H412 V541"/><path class="line" d="M537 584 H582"/>
+<text x="54" y="692" class="sub">Educational reference only: not a complete transition specification or student solution.</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 560" role="img" aria-labelledby="title desc">
+<title id="title">ROS 2 FSM function calls and asynchronous battery interruption</title><desc id="desc">Executor calls timer and battery callbacks. Tick dispatches navigation action asynchronously, goal runs in Nav2, battery callback sets interrupt request, timer initiates cancellation then C1 charging and mission resumption.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#1d2940}.title{font-size:26px;font-weight:bold}.sub{font-size:15px;fill:#4d6077}.head{font-size:17px;font-weight:bold}.small{font-size:14px}.box{fill:#ebf3ff;stroke:#688fc7;stroke-width:2}.orange{fill:#fff1d9;stroke:#bf8729;stroke-width:2}.green{fill:#e6f7ee;stroke:#3e9676;stroke-width:2}.arrow{fill:none;stroke:#526b88;stroke-width:2.8;marker-end:url(#end)}.dashed{stroke:#bf8729;stroke-dasharray:7 6}</style><defs><marker id="end" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#526b88"/></marker></defs>
+<rect width="1080" height="560" rx="18" fill="white"/>
+<text x="40" y="45" class="title">Who calls each FSM function?</text><text x="40" y="70" class="sub">ROS 2 invokes callbacks; student FSM calls action helpers. Sending a goal must not block the executor.</text>
+<rect class="box" x="50" y="105" width="200" height="78" rx="12"/><text x="150" y="133" text-anchor="middle" class="head">ROS 2 Executor</text><text x="150" y="157" text-anchor="middle" class="small">Processes callbacks</text>
+<rect class="box" x="343" y="101" width="226" height="81" rx="12"/><text x="456" y="128" text-anchor="middle" class="head">tick() every 0.5 s</text><text x="456" y="151" text-anchor="middle" class="small">FSM dispatcher</text>
+<rect class="box" x="660" y="101" width="346" height="81" rx="12"/><text x="833" y="128" text-anchor="middle" class="head">start_navigation('R2')</text><text x="833" y="151" text-anchor="middle" class="small">send_goal_async() → return</text>
+<path class="arrow" d="M250 142 H343"/><path class="arrow" d="M569 142 H660"/>
+<rect class="green" x="660" y="223" width="346" height="84" rx="12"/><text x="833" y="251" text-anchor="middle" class="head">Nav2 action server</text><text x="833" y="274" text-anchor="middle" class="small">Robot moves; result arrives later</text>
+<path class="arrow" d="M833 182 V223"/>
+<rect class="orange" x="51" y="223" width="320" height="84" rx="12"/><text x="211" y="252" text-anchor="middle" class="head">on_battery(msg)</text><text x="211" y="274" text-anchor="middle" class="small">Battery ≤15% → interrupt request</text>
+<path class="arrow dashed" d="M150 183 V223"/>
+<rect class="orange" x="379" y="345" width="317" height="86" rx="12"/><text x="537" y="373" text-anchor="middle" class="head">tick(): INTERRUPTING</text><text x="537" y="396" text-anchor="middle" class="small">Checkpoint + cancel_goal_async()</text><text x="537" y="415" text-anchor="middle" class="small">Await cancel result / safe stop</text>
+<path class="arrow dashed" d="M211 307 V388 H379"/><path class="arrow" d="M833 307 V334 H696"/>
+<rect class="green" x="379" y="466" width="478" height="62" rx="12"/><text x="618" y="491" text-anchor="middle" class="head">Navigate C1 → Verify dock → Charge → Resume</text><text x="618" y="511" text-anchor="middle" class="small">Start new movement only after previous action is resolved</text>
+<path class="arrow" d="M537 431 V466"/>
+<text x="53" y="528" class="sub">The student implements callback wiring, goal-handle bookkeeping and transitions.</text>
+</svg>
