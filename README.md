@@ -87,6 +87,55 @@ ET5900-Assignment02-FSM/
 | Inspect the workcell | [Gazebo SDF](worlds/week9_pick_place.sdf) |
 
 
+### How does the FSM execute different states?
+
+The FSM uses a periodic ROS 2 timer:
+
+```python
+self.timer = self.create_timer(0.5, self.tick)
+```
+
+ROS 2 automatically invokes `tick()` approximately every 0.5 seconds.
+
+Students must implement the state dispatcher and transitions.
+
+**Conceptual example (not a complete FSM):**
+
+```python
+def tick(self):
+
+    if self.state == MissionState.IDLE:
+        self.state = MissionState.NAVIGATING
+        self.start_navigation('R1')
+
+    elif self.state == MissionState.NAVIGATING:
+        # Monitor navigation events and action results.
+        pass
+
+    elif self.state == MissionState.INTERRUPTING:
+        # Begin or continue a safe interruption.
+        pass
+
+    elif self.state == MissionState.DOCKING:
+        # Begin or monitor C1 docking.
+        pass
+
+    elif self.state == MissionState.CHARGING:
+        # Monitor battery percentage.
+        pass
+```
+
+**Important:** `tick()` does not automatically cycle through all states. Only the branch matching `self.state` executes.
+
+Students must design:
+- When to enter and leave each state.
+- Which function to call upon entering a state.
+- How to avoid sending duplicate goals on every timer tick.
+- How ROS 2 action callbacks report success, cancellation, and failure.
+- How battery events trigger interruption and mission resumption.
+
+All long-running robot operations must use nonblocking ROS 2 actions so battery monitoring remains responsive.
+
 ## FSM Architecture and Asynchronous Execution
 
 ### Complete Mission FSM
