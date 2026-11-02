@@ -29,12 +29,10 @@ The git patch command is for a fresh clone, NOT for the already modified instruc
 
 ## Source packages
 
-Do not delete your working ROS workspaces. For a clean student workspace, prefer to put all custom packages under one `src` after installing SO-101 and TurtleBot dependencies; adjust the source order according to your verified setup. The prepared `tb4_fsm_assignment` package provides `nav2_twist_bridge`, `station_markers`, and an intentionally incomplete `student_fsm`. Its `infrastructure.launch.py` starts the bridge and station markers only; Gazebo, bridge sensors, AMCL, Nav2 and MoveIt must be launched separately.
+For a clean student workspace, prefer to put all custom packages under one `src` after installing SO-101 and TurtleBot dependencies; adjust the source order according to your verified setup. The prepared `tb4_fsm_assignment` package provides `nav2_twist_bridge`, `station_markers`, and an intentionally incomplete `student_fsm`. Its `infrastructure.launch.py` starts the bridge and station markers only; Gazebo, bridge sensors, AMCL, Nav2 and MoveIt must be launched separately.
 
 ## Critical release checks
 
-- Inspect local modifications and package dependencies with `ros2 pkg list` and `rosdep`.
-- Make Gazebo world resolution point to installed assignment world or document tested world install location; DO NOT assume this has already been integrated.
 - Record safe robot-center navigation goal poses in `src/tb4_fsm_assignment/config/stations.yaml`.
 - Check that the virtual battery has only one publisher on `/battery_state`.
 - Stop any duplicate velocity bridge before running new bridge.
