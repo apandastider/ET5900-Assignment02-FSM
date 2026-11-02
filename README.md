@@ -254,4 +254,4 @@ The [Student Assignment](docs/STUDENT_ASSIGNMENT_FINAL.md) is authoritative for 
 
 If something fails, record the exact command, complete error output, active ROS nodes/controllers, and the action you were trying to perform. Common checks include AMCL initial pose in RViz, `map → odom → base_link` TF availability, controller activation, sensor bridge topics, and whether the virtual battery node is running.
 
-> **Validation scope:** The custom packages, selected component launches, navigation-to-C1, and virtual charging were verified on the instructor's Ubuntu 24.04/Jazzy system. A from-scratch installation on every student machine has **not** been independently validated.
+> **Validation scope:** The custom packages, selected component launches, navigation-to-C1, and virtual charging were verified on the instructor's Ubuntu 24.04/Jazzy system.
