@@ -1,10 +1,10 @@
-# ET 5900 — Assignment 02: Finite-State Machine for Mobile Manipulation
+# ET 5900 - Assignment 02: Finite-State Machine for Mobile Manipulation
 
-**Course:** ET 5900 — Multi-Robot Systems  
+**Course:** ET 5900 - Multi-Robot Systems  
 **Robot:** TurtleBot 4 Lite + SO-ARM101  
 **Software:** Ubuntu 24.04 · ROS 2 Jazzy · Gazebo Harmonic · Nav2 · MoveIt 2
 
-> **Students: Start with the [Assignment Requirements](docs/STUDENT_ASSIGNMENT_FINAL.md), then follow the [Installation Guide](docs/STUDENT_INSTALLATION.md).** Use the [ROS 2 Command Reference](docs/ROS2_COMMAND_REFERENCE.md) as you implement your controller.
+> **Students: Start with the [Assignment Requirements](docs/STUDENT_ASSIGNMENT_FINAL.md), then follow the [Installation Guide](docs/STUDENT_INSTALLATION.md).** Use the [ROS 2 Command Reference](docs/ROS2_COMMAND_REFERENCE.md) as you implement your controller. A video instructions are provided also in the Canvas.
 
 ## Assignment overview
 
@@ -83,7 +83,7 @@ ET5900-Assignment02-FSM/
 | Learn `ros2 topic pub`, Nav2 actions, and arm joint trajectory commands | [ROS 2 Command Reference](docs/ROS2_COMMAND_REFERENCE.md) |
 | Implement the FSM | [student_fsm.py](src/tb4_fsm_assignment/tb4_fsm_assignment/student_fsm.py) |
 | Check coordinates for R1, R2, G1, G2, C1 | [stations.yaml](src/tb4_fsm_assignment/config/stations.yaml) |
-| Record safe joint targets | [arm_poses_TEMPLATE.yaml](src/tb4_fsm_assignment/config/arm_poses_TEMPLATE.yaml) |
+| Record 4 safe joint targets | [arm_poses_TEMPLATE.yaml](src/tb4_fsm_assignment/config/arm_poses_TEMPLATE.yaml) |
 | Inspect robot integration | [Robot Gazebo Launch](src/tb4_so101_description/launch/tb4_so101_gazebo.launch.py) |
 | Inspect MoveIt integration | [MoveIt Launch](src/tb4_so101_moveit_config/launch/moveit.launch.py) |
 | Inspect the workcell | [Gazebo SDF](worlds/week9_pick_place.sdf) |
@@ -250,7 +250,7 @@ Never send manual base velocity commands concurrently with an active Nav2 goal. 
 
 ## Submission, grading, and help
 
-The [Student Assignment](docs/STUDENT_ASSIGNMENT_FINAL.md) is authoritative for the **grading rubric, individual/team deliverables, report requirements, undergraduate/graduate distinctions, and due date**. The FSM skeleton alone is not an answer or an acceptable submission.
+The [Student Assignment](docs/STUDENT_ASSIGNMENT_FINAL.md) is authoritative for the **grading rubric, individual deliverables, report requirements, undergraduate/graduate distinctions, and due date**. The FSM skeleton alone is not an answer or an acceptable submission.
 
 If something fails, record the exact command, complete error output, active ROS nodes/controllers, and the action you were trying to perform. Common checks include AMCL initial pose in RViz, `map → odom → base_link` TF availability, controller activation, sensor bridge topics, and whether the virtual battery node is running.
 
