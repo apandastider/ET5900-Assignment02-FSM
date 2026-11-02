@@ -1,5 +1,33 @@
-# Instructor must measure/validate collision-safe arm poses at all stations.
-# Deliberately NO numeric trajectories are shipped as verified.
-# Students can use recorded trajectories or safely designed motions.
-arm_joints: [so101_shoulder_pan, so101_shoulder_lift, so101_elbow_flex, so101_wrist_flex, so101_wrist_roll]
-poses: {}
+
+# ET 5900 — Assignment 02
+# SO-ARM101 Joint Motion Configuration
+#
+# Students must determine collision-safe joint configurations
+# using MoveIt 2 → MotionPlanning → Joints tab.
+#
+# Joint positions must be in radians.
+# Do not execute unverified trajectories.
+
+arm_joints:
+  - so101_shoulder_pan
+  - so101_shoulder_lift
+  - so101_elbow_flex
+  - so101_wrist_flex
+  - so101_wrist_roll
+
+poses:
+  R1:
+    description: "Red pickup station"
+    joint_positions: []  # TODO-STUDENT: five joint values
+
+  R2:
+    description: "Red placement station"
+    joint_positions: []  # TODO-STUDENT: five joint values
+
+  G1:
+    description: "Green pickup station"
+    joint_positions: []  # TODO-STUDENT: five joint values
+
+  G2:
+    description: "Green placement station"
+    joint_positions: []  # TODO-STUDENT: five joint values
