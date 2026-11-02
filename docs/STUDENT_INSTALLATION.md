@@ -11,7 +11,7 @@ mkdir -p ~/et5900-course
 cd ~/et5900-course
 git clone YOUR_INSTRUCTOR_GITHUB_URL et5900-fsm-assignment
 ```
-The instructor must replace `YOUR_INSTRUCTOR_GITHUB_URL` with the published address before distribution. Check that `src/` contains four custom packages, `maps/` contains YAML+PGM, `worlds/` contains the actual SDF, and `patches/` contains the gripper patch.
+The student must replace `YOUR_INSTRUCTOR_GITHUB_URL` with the published address before executing the above command. Check that `src/` contains four custom packages, `maps/` contains YAML+PGM, `worlds/` contains the actual SDF, and `patches/` contains the gripper patch.
 
 ## B. Install upstream SO-ARM101 model (tested commit)
 ```bash
