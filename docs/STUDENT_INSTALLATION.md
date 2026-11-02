@@ -9,7 +9,7 @@ The verified TurtleBot 4 packages are taken from the instructor's Jazzy installa
 ```bash
 mkdir -p ~/et5900-course
 cd ~/et5900-course
-git clone YOUR_INSTRUCTOR_GITHUB_URL et5900-fsm-assignment
+git clone "https://github.com/apandastider/ET5900-Assignment02-FSM.git"
 ```
 The student must replace `YOUR_INSTRUCTOR_GITHUB_URL` with the published address before executing the above command. Check that `src/` contains four custom packages, `maps/` contains YAML+PGM, `worlds/` contains the actual SDF, and `patches/` contains the gripper patch.
 
@@ -26,7 +26,7 @@ source /opt/ros/jazzy/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 ```
-Patch applies to a **clean clone**. Never apply it blindly to an already-modified tree. Instructor confirms the patch's contents and licensing before publishing.
+Patch applies to a **clean clone**. Never apply it blindly to an already-modified tree. Instructor confirmed the patch's contents and licensing before publishing.
 
 ## C. Prepare upstream TurtleBot 4 simulator
 Install the instructor-approved Jazzy TurtleBot simulator and Nav2 / MoveIt dependencies; exact pinned setup is retained in course environment instructions. Validate:
