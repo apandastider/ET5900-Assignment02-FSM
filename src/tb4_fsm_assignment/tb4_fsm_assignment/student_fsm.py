@@ -40,6 +40,13 @@ class MissionFSM(Node):
         with open(path, encoding='utf-8') as stream:
             self.stations = yaml.safe_load(stream)['stations']
 
+        arm_path = os.path.join(get_package_share_directory('tb4_fsm_assignment'),
+            'config','arm_poses_TEMPLATE.yaml'
+        )
+        
+        with open(arm_path, encoding='utf-8') as stream:
+            self.arm_config = yaml.safe_load(stream)
+
         # Provided interfaces; STUDENTS implement asynchronous goal behavior.
         self.nav = ActionClient(self, NavigateToPose, '/navigate_to_pose')
         self.arm = ActionClient(self, FollowJointTrajectory,
