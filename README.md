@@ -86,6 +86,25 @@ ET5900-Assignment02-FSM/
 | Inspect MoveIt integration | [MoveIt Launch](src/tb4_so101_moveit_config/launch/moveit.launch.py) |
 | Inspect the workcell | [Gazebo SDF](worlds/week9_pick_place.sdf) |
 
+
+## FSM Architecture and Asynchronous Execution
+
+### Complete Mission FSM
+
+The robot follows R1 → R2 → G1 → G2 and interrupts the mission
+when the battery falls to 15% or below.
+
+![Complete FSM architecture](images/fsm_mission_overview.svg)
+
+### How Function Calls and Interruption Work
+
+ROS 2 invokes timer and subscription callbacks automatically.
+Students must implement the FSM function calls, asynchronous
+goal handling, cancellation and task resumption.
+
+![Asynchronous FSM execution](images/fsm_async_callbacks.svg)
+
+
 ## Dependencies
 
 The instructor-tested environment is **Ubuntu 24.04 LTS, ROS 2 Jazzy, and Gazebo Harmonic (Gazebo Sim 8)**. Students also need:
