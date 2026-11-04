@@ -37,19 +37,10 @@ ros2 pkg prefix nav2_bringup
 ros2 pkg prefix moveit_ros_move_group
 ```
 
-## D. Build assignment packages in isolated workspace
-```bash
-cd ~/et5900-course/et5900-fsm-assignment
-bash scripts/release_preflight.sh
-# assumes an instructor-provided ~/turtlebot4_ws/install/setup.bash
-bash scripts/build_release.sh ~/et5900_release_test
-```
-If your TurtleBot simulator is installed in a different workspace, source its `install/setup.bash` before building; adapt `scripts/build_release.sh` accordingly.
-
-## E. Install the workcell SDF into the simulator's world location (only if needed)
+## D. Install the workcell SDF into the simulator's world location (only if needed)
 The tested Gazebo launch uses `world:=week9_pick_place`. On a computer where that world is not already installed, locate the source/installed world lookup used by `tb4_so101_gazebo.launch.py`. Copy `worlds/week9_pick_place.sdf` there, or adapt the launch to accept a full path. **Do not edit root-owned /opt/ros directories**. Do not assume setting `GZ_SIM_RESOURCE_PATH` alone will make a custom ROS launch find the file.
 
-## F. Start components (one terminal each)
+## E. Start components (one terminal each)
 Each terminal:
 ```bash
 cd ~/et5900-course/et5900-fsm-assignment
@@ -59,7 +50,7 @@ Run in order Gazebo → ROS–Gazebo bridge → localization (AMCL, saved map) �
 
 In RViz set Fixed Frame `map`, add Map `/map` with Transient Local durability, set the robot's initial pose using 2D Pose Estimate, and add MarkerArray `/fsm/station_markers`. Confirm all Nav2 lifecycle nodes are active and the controller has a velocity subscriber.
 
-## G. Student FSM starter
+## F. Student FSM starter
 ```bash
 source /opt/ros/jazzy/setup.bash
 source ~/et5900_release_test/install/setup.bash
