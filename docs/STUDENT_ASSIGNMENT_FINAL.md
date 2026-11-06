@@ -60,3 +60,7 @@ The `student_fsm.py` provides Nav2, arm, optional DockRobot/UndockRobot action c
 
 The same core outcomes apply to all; graduate-level report and recovery-depth criteria are assessed as well. An implementation that bypasses docking verification or hardcodes charging success does not satisfy the charging criterion.
 
+#AI Tool Usage and Disclosure Policy
+Students may use AI tools for understanding ROS 2 concepts, interpreting error messages, debugging, reviewing documentation, and troubleshooting simulation issues. However, generating complete assignment solutions or directly generating FSM implementation code using AI is not permitted. Students must independently design and implement their state transitions, asynchronous action handling, battery interruption, docking, checkpointing, and recovery logic.
+
+Mandatory AI Disclosure: Each student must include a short statement in their project report describing any AI tools used, their purpose, and how the suggestions were applied or verified. If no AI tools were used, explicitly state: “No AI tools were used for this assignment.” Students remain responsible for understanding, explaining, and validating all submitted work.
